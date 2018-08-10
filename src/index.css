@@ -1,0 +1,94 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+body{
+  background-color: white;
+  padding: 100px;
+}
+.wrapper {
+  margin: auto;
+  background-image: url(./images/sun/sun4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  width: 400px;
+  height: 640px;
+  padding-top: 40px;
+  border:  8px solid black;
+}
+.city{
+  margin-top: 200px;
+  margin: auto;
+  width: 50%;
+  height: 200px;
+  font-size: 30px;
+  padding-top: 50px;
+}
+.city p{
+  text-align: center;
+}
+.city p:last-child{
+  font-size: 60px;
+  font-weight: bold;
+  padding-top: 25px;
+}
+.data p{
+  text-align: center;
+}
+.data div{
+  width: 33.3%;
+  float: left;
+}
+.data div p:first-child{
+  color:white;
+}
+.pix{
+  width: 50px;
+  height: 50px;
+
+}
+.wrapp{
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+.form{
+  width: 50%;
+  height: 100px;
+}
+.form input{
+  border: 2px solid rgba(235, 235, 235, 0.94);
+  border-radius: 40px;
+  height: 40px;
+  padding: 0 11px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: grey;
+  opacity: 0.5;
+}
+.wrappForm{
+  width: 400px;
+  height: 640px;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.wrappButton{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.form button{
+  margin: auto;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  background-color: #ffe070;
+  border: 1px solid #ffe070;
+}
