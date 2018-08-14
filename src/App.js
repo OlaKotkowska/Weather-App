@@ -10,14 +10,13 @@ import {
 } from 'react-router-dom';
 
 const apiKey = "a4cbf5c849acc7b2d67d4c5fef6b5a4f";
-//api.openweathermap.org/data/2.5/forecast?q=London&apikey=a4cbf5c849acc7b2d67d4c5fef6b5a4f
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       inputText: "",
-      city: undefined,
+      city: "",
       temperature: undefined,
       country: undefined,
       humidity: undefined,
@@ -26,9 +25,7 @@ class App extends React.Component{
       clouds: undefined,
       visibility:undefined,
       icon: undefined,
-      forecast:[],
       error: undefined
-
     }
   }
 
@@ -53,31 +50,39 @@ class App extends React.Component{
       clouds: obj.clouds,
       visibility:obj.visibility,
       icon: obj.weather[0].icon,
+      forecast: [],
       error: " "
     }, ()=> {
       history.push('/weather')
     }
    ))
   }
+
   getForecast = (event, history) =>{
     event.preventDefault();
     fetch(`api.openweathermap.org/data/2.5/forecast?q=${this.state.inputText}&apikey=${apiKey}`)
     .then(respose => respose.json())//pobiera jsona
-    .then(forcast => this.setState({
-      forecast: forcast,
+    .then(forecast => this.setState({
+      forecast: forecast,
       error: " "
     }, ()=> {
       history.push('/weather')
     }
    ))
   }
-render(){
-  return(
 
+
+
+
+render(){
+
+  //let style = {backgroundImage: this.state.city.length > 0 ? 'red' : 'blue;'}
+//style = {style}
+  return(
     <HashRouter>
-    <div className = "wrapper">
+    <div className = "wrapper" >
       <Switch>
-        <Route exact path='/' render = {props => <Form {...props} getWeather ={this.getWeather} getForecast={this.getForecast} inputText = {this.state.inputText} handleChange = {this.handleChange}/>} />
+        <Route exact path='/' render = {props => <Form {...props} getWeather ={this.getWeather} getForecast ={this.getForecast} inputText = {this.state.inputText} handleChange = {this.handleChange}/>} />
         <Route path = '/weather'
         render = {props => <Weather {...props}
                             temperature = {this.state.temperature}
@@ -85,7 +90,8 @@ render(){
                             humidity = {this.state.humidity}
                             pressure = {this.state.pressure}
                             wind = {this.state.wind}
-                            icon = {this.state.icon}/>}/>
+                            icon = {this.state.icon}
+                            forecast= {this.state.forecast}/>}/>
       </Switch>
       </div>
     </HashRouter>

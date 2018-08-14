@@ -16,14 +16,17 @@ class Form extends React.Component{
     return(
       <div className = "wrappForm">
         <form className = "form">
+          <div className = "wrapInput">
           <input type = "text" value={this.props.inputText} onChange={e => this.props.handleChange(e)}></input>
+          </div>
           <div className = "wrappButton">
-            <button onClick = {(e) => {this.props.getWeather(e, this.props.history);this.props.getForecast(e, this.props.history)}}></button>
+            <a href='#' data-title = "Get Weather" onClick = {(e) => {this.props.getWeather(e, this.props.history);this.props.getForecast(e, this.props.history)}}></a>
             </div>
         </form>
       </div>
     )
   }
 }
+//<button data-title = onClick = {e => this.props.getWeather(e, this.props.history)}></button>
 //<a href="#" onClick={(event) => { func1(); func2();}}>Test Link</a>
 export default Form;
