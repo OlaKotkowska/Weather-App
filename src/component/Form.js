@@ -20,13 +20,14 @@ class Form extends React.Component{
           <input type = "text" value={this.props.inputText} onChange={e => this.props.handleChange(e)}></input>
           </div>
           <div className = "wrappButton">
-            <a href='#' data-title = "Get Weather" onClick = {(e) => {this.props.getWeather(e, this.props.history);this.props.getForecast(e, this.props.history)}}></a>
+            <a href='#' data-title = "Get Weather" onClick = {(e) => this.props.getWeather(e, this.props.history)}></a>
             </div>
         </form>
       </div>
     )
   }
 }
+//this.props.getWeather(e, this.props.history);
 //<button data-title = onClick = {e => this.props.getWeather(e, this.props.history)}></button>
 //<a href="#" onClick={(event) => { func1(); func2();}}>Test Link</a>
 export default Form;

@@ -25,6 +25,7 @@ class App extends React.Component{
       clouds: undefined,
       visibility:undefined,
       icon: undefined,
+      forecast: undefined,
       error: undefined
     }
   }
@@ -50,25 +51,29 @@ class App extends React.Component{
       clouds: obj.clouds,
       visibility:obj.visibility,
       icon: obj.weather[0].icon,
-      forecast: [],
-      error: " "
+      error: " ",
+
     }, ()=> {
       history.push('/weather')
     }
-   ))
+  ),
+
+  this.getForecast(event,history),
+  //console.log(this.state.forecast)
+)
+
   }
 
-  getForecast = (event, history) =>{
+  getForecast = (event) =>{
     event.preventDefault();
-    fetch(`api.openweathermap.org/data/2.5/forecast?q=${this.state.inputText}&apikey=${apiKey}`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.inputText}&apikey=${apiKey}`)
     .then(respose => respose.json())//pobiera jsona
     .then(forecast => this.setState({
       forecast: forecast,
       error: " "
-    }, ()=> {
-      history.push('/weather')
     }
-   ))
+  ));
+  //console.log(this.state.forecast)
   }
 
 
@@ -92,6 +97,7 @@ render(){
                             wind = {this.state.wind}
                             icon = {this.state.icon}
                             forecast= {this.state.forecast}/>}/>
+
       </Switch>
       </div>
     </HashRouter>
