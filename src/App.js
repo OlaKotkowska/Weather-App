@@ -24,6 +24,7 @@ class App extends React.Component{
       pressure: undefined,
       clouds: undefined,
       visibility:undefined,
+      weather:undefined,
       icon: undefined,
       forecast: undefined,
       error: undefined
@@ -41,7 +42,7 @@ class App extends React.Component{
     //const city = event.target.elements.city.value;
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.inputText}&apikey=${apiKey}`)
     .then(respose => respose.json())//pobiera jsona
-    .then(obj => this.setState({  //zwraca obiekt z pogodą dla danego miasta
+    .then(obj =>this.setState({  //zwraca obiekt z pogodą dla danego miasta
       city: obj.name,
       temperature: obj.main.temp,
       country: obj.country,
@@ -50,9 +51,9 @@ class App extends React.Component{
       pressure: obj.main.pressure,
       clouds: obj.clouds,
       visibility:obj.visibility,
+      weather:obj.weather[0].main,
       icon: obj.weather[0].icon,
       error: " ",
-
     }, ()=> {
       history.push('/weather')
     }
@@ -61,7 +62,7 @@ class App extends React.Component{
   this.getForecast(event,history),
   //console.log(this.state.forecast)
 )
-
+  .catch(err => this.setState({error: "Pleas enter the values."}))
   }
 
   getForecast = (event) =>{
@@ -76,13 +77,30 @@ class App extends React.Component{
   //console.log(this.state.forecast)
   }
 
-
+//   if (city && country) {
+//       this.setState({
+//         temperature: data.main.temp,
+//         city: data.name,
+//         country: data.sys.country,
+//         humidity: data.main.humidity,
+//         description: data.weather[0].description,
+//         error: ""
+//       });
+//     } else {
+//       this.setState({
+//         temperature: undefined,
+//         city: undefined,
+//         country: undefined,
+//         humidity: undefined,
+//         description: undefined,
+//         error: "Please enter the values."
+// });
 
 
 render(){
-
   //let style = {backgroundImage: this.state.city.length > 0 ? 'red' : 'blue;'}
 //style = {style}
+ console.log('this.state.weather',this.state.weather)
   return(
     <HashRouter>
     <div className = "wrapper" >
@@ -96,6 +114,7 @@ render(){
                             pressure = {this.state.pressure}
                             wind = {this.state.wind}
                             icon = {this.state.icon}
+                            iconForecast = {this.state.iconForecast}
                             forecast= {this.state.forecast}/>}/>
 
       </Switch>
