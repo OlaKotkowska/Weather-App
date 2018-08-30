@@ -38,7 +38,7 @@ class Weather extends React.Component{
       <HashRouter>
         <div>
           <div className = "clock-nav">
-          <nav><i className="fa fa-bars" aria-hidden="true"></i></nav>
+          <button className = "btnHome" onClick = {() => this.props.history.goBack()}>=</button>
           <ClockDate/>
           </div>
           <div className = "city">
@@ -63,7 +63,7 @@ class Weather extends React.Component{
               <p>wind:</p>
               <p>{this.props.wind}km/h</p>
             </div>
-          
+
             <MyComponent/>
 
           <div className = "forecastList">
